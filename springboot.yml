@@ -7,27 +7,15 @@
       yum:
         name: docker
         state: present
-    - name: Start and enable dokeer daemon
+    - name: Start and enable docker daemon
       service:
         name: docker
         state: started
         enabled: True
 
-    - name: Install pip
-      yum:
-        name: python-pip
-        state: present
-    - name: Install docker-py
-      pip:
-        name: docker-py
-        state: present
-    - name: Create mongodb container
-      docker_container:
-        name: mongodb
-        image: mongo:latest
-        ports:
-          - "27017:27017"
-        volumes:
-          - mydbdata:/data/db 
-          - mongo-config:/data/configdb 
+    - name: Create springboot
+      docker_container: 
+        name: springbootapi
+        image: boot-api:1.1
+         
         
