@@ -1,0 +1,33 @@
+---
+
+- hosts: k8s1
+  become: True
+  tasks:
+    - name: Install docker daemon
+      yum:
+        name: docker
+        state: present
+    - name: Start and enable dokeer daemon
+      service:
+        name: docker
+        state: started
+        enabled: True
+
+    - name: Install pip
+      yum:
+        name: python-pip
+        state: present
+    - name: Install docker-py
+      pip:
+        name: docker-py
+        state: present
+    - name: Create mongodb container
+      docker_container:
+        name: mongodb
+        image: mongo:latest
+        ports:
+          - "27017:27017"
+        volumes:
+          - mydbdata:/data/db 
+          - mongo-config:/data/configdb 
+        
