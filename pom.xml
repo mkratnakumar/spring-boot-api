@@ -52,10 +52,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			   
-			<plugin>
-    			       <artifactId>maven-compiler-plugin</artifactId>
-    			       <version>3.3.9</version>
-	                </plugin>
 				
 		</plugins>
 		
